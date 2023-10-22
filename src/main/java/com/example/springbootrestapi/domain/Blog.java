@@ -2,10 +2,13 @@ package com.example.springbootrestapi.domain;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private long id;
 
     @Column
@@ -13,6 +16,15 @@ public class Blog {
 
     @Column
     private String content;
+
+    @ManyToOne
+    private User user;
+
+    @Column(name = "create_dt")
+    private Timestamp createDt;
+
+    @Column(name = "update_dt")
+    private Timestamp updateDt;
 
     public long getId() {
         return id;
@@ -36,5 +48,29 @@ public class Blog {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Timestamp getCreateDt() {
+        return createDt;
+    }
+
+    public void setCreateDt(Timestamp createDt) {
+        this.createDt = createDt;
+    }
+
+    public Timestamp getUpdateDt() {
+        return updateDt;
+    }
+
+    public void setUpdateDt(Timestamp updateDt) {
+        this.updateDt = updateDt;
     }
 }
